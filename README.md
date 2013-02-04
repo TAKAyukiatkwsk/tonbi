@@ -1,3 +1,3 @@
 # tonbi
 
-Post viewing Web page infomation to Twitter
+(In development) Post viewing Web page infomation to Twitter
