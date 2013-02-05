@@ -3,9 +3,7 @@ function displayPageTitleUrl() {
     "active": true,
     "currentWindow": true,
   }, function(tab) {
-    $("h1").html(function () {
-      return tab[0].title + " " + tab[0].url;
-    });
+    $("h1").html(tab[0].title + " " + tab[0].url);
   });
 }
 
