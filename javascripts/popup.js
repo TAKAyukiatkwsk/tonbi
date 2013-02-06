@@ -9,6 +9,11 @@ function displayPageTitleUrl() {
 
 document.addEventListener('DOMContentLoaded', function () {
   // Twitter認証済みか？
+  var twitter = new Twitter();
+  if (! twitter.isAuthorized()) {
+    // Twitterログインボタンを表示する
+    
+  }
 
   // ページのタイトルとURLを表示する
   displayPageTitleUrl();
