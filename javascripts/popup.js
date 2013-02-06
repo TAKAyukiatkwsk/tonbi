@@ -11,7 +11,10 @@ document.addEventListener('DOMContentLoaded', function () {
   // Twitter認証済みか？
   var twitter = new Twitter();
   if (! twitter.isAuthorized()) {
-    // Twitterログインボタンを表示する
+    // Twitterログインボタンのクリックイベント
+    $('#twitter_login').click(function () {
+      twitter.userLogin();
+    });
     
   }
 
