@@ -6,6 +6,10 @@ Twitter.prototype.isAuthorized = function () {
 }
 
 Twitter.prototype.userLogin = function () {
-  
+  var options = {
+    consumerKey: CONSUMER_KEY,
+    consumerSecret: CONSUMER_SECRET
+  };
+  var oauth = OAuth(options);
 }
 
