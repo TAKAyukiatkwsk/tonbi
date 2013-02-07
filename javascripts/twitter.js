@@ -15,7 +15,17 @@ Twitter.prototype.userLogin = function () {
   oauth.get('https://api.twitter.com/oauth/request_token',
       function (data) {
         // succeed to get request token
-        console.log(data);
+        // レスポンスからoauth_tokenを抜き出す
+        var arrayOfResponseText = data.text.split('&');
+        var queryOauthToken = null;
+        for (var index in arrayOfResponseText) {
+          var mathchesOauthToken = arrayOfResponseText[index].match(/^oauth_token=.*$/);
+          if (mathchesOauthToken !== null) {
+            queryOauthToken = mathchesOauthToken[0];
+            break;
+          }
+        }
+        console.log(queryOauthToken);
       },
       function (data) {
         // fail to get request token
