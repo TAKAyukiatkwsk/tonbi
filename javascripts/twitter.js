@@ -31,7 +31,15 @@ Twitter.prototype.userLogin = function () {
         // succeed to get request token
         // レスポンスからoauth_tokenを抜き出す
         var queryOauthToken = extractQueryOauthToken(data.text);
-        console.log(queryOauthToken);
+        if (queryOauthToken === null) {
+          console.log('Cannot get oauth token!');
+          return;
+        }
+
+        // 新しいタブでauthorizeページを開く
+        chrome.tabs.create({
+          url: 'https://api.twitter.com/oauth/authorize?' + queryOauthToken
+        });
       },
       function (data) {
         // fail to get request token
