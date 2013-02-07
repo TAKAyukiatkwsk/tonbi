@@ -6,6 +6,20 @@ Twitter.prototype.isAuthorized = function () {
 }
 
 Twitter.prototype.userLogin = function () {
+  function extractQueryOauthToken(responseText) {
+    // responseText はクエリパラメータ形式になっている
+    var arrayOfResponseText = responseText.split('&');
+
+    // oauth_token=で始まる文字列を見つけて返す
+    for (var index in arrayOfResponseText) {
+      var mathchesOauthToken = arrayOfResponseText[index].match(/^oauth_token=.*$/);
+      if (mathchesOauthToken !== null) {
+        return mathchesOauthToken[0];
+      }
+    }
+    return null;
+  }
+
   var options = {
     consumerKey: CONSUMER_KEY,
     consumerSecret: CONSUMER_SECRET
@@ -16,15 +30,7 @@ Twitter.prototype.userLogin = function () {
       function (data) {
         // succeed to get request token
         // レスポンスからoauth_tokenを抜き出す
-        var arrayOfResponseText = data.text.split('&');
-        var queryOauthToken = null;
-        for (var index in arrayOfResponseText) {
-          var mathchesOauthToken = arrayOfResponseText[index].match(/^oauth_token=.*$/);
-          if (mathchesOauthToken !== null) {
-            queryOauthToken = mathchesOauthToken[0];
-            break;
-          }
-        }
+        var queryOauthToken = extractQueryOauthToken(data.text);
         console.log(queryOauthToken);
       },
       function (data) {
