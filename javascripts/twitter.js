@@ -47,6 +47,10 @@ Twitter.prototype.userLogin = function () {
       });
 }
 
+// Request tokenが保存されていればtrue
 Twitter.prototype.hasRequestToken = function () {
-  
+  if (this.requestToken === undefined || this.requestToken === null) {
+    return false;
+  }
+  return true;
 }
