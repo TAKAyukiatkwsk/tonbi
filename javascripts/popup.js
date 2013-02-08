@@ -10,7 +10,12 @@ function displayPageTitleUrl() {
 document.addEventListener('DOMContentLoaded', function () {
   // Twitter認証済みか？
   var twitter = new Twitter();
-  if (! twitter.isAuthorized()) {
+  if (twitter.isAuthorized()) {
+    // ログイン&認証済み
+  } else if (twitter.hasRequestToken()) {
+    // request token 取得済み
+    // PINコードを入力する
+  } else {
     // Twitterログインボタンのクリックイベント
     $('#twitter_login').click(function () {
       twitter.userLogin();

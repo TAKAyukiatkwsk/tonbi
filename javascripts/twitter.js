@@ -47,3 +47,6 @@ Twitter.prototype.userLogin = function () {
       });
 }
 
+Twitter.prototype.hasRequestToken = function () {
+  
+}
