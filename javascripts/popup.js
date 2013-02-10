@@ -7,6 +7,9 @@ function displayPageTitleUrl() {
   });
 }
 
+// TODO: バックグラウンドでTwitterオブジェクトを作っておく？
+//       今のままだとアカウントの状態を保存できない
+//       localstorageに保存する？
 document.addEventListener('DOMContentLoaded', function () {
   // Twitter認証済みか？
   var twitter = new Twitter();

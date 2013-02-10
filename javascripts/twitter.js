@@ -1,4 +1,5 @@
 function Twitter() {
+  this.requestToken = '';
 }
 
 Twitter.prototype.isAuthorized = function () {
@@ -36,6 +37,9 @@ Twitter.prototype.userLogin = function () {
           return;
         }
 
+        // request token を保存する
+        this.requestToken = queryOauthToken;
+
         // 新しいタブでauthorizeページを開く
         chrome.tabs.create({
           url: 'https://api.twitter.com/oauth/authorize?' + queryOauthToken
@@ -49,8 +53,8 @@ Twitter.prototype.userLogin = function () {
 
 // Request tokenが保存されていればtrue
 Twitter.prototype.hasRequestToken = function () {
-  if (this.requestToken === undefined || this.requestToken === null) {
-    return false;
+  if (this.requestToken) {
+    return true;
   }
-  return true;
+  return false;
 }
