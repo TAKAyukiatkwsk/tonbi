@@ -11,8 +11,11 @@ function displayPageTitleUrl() {
 //       今のままだとアカウントの状態を保存できない
 //       localstorageに保存する？
 document.addEventListener('DOMContentLoaded', function () {
+  // バックグランドで作成したTwitterインスタンスを取得する
+  var bg = chrome.extension.getBackgroundPage();
+  var twitter = bg.getTwitterInstance();
+
   // Twitter認証済みか？
-  var twitter = new Twitter();
   if (twitter.isAuthorized()) {
     // ログイン&認証済み
   } else if (twitter.hasRequestToken()) {
