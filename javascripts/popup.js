@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // request token 取得済み
     // PINコードを入力する
   } else {
+    $('form').hide();
     // Twitterログインボタンのクリックイベント
     $('#twitter_login').click(function () {
       twitter.userLogin();
