@@ -18,8 +18,10 @@ document.addEventListener('DOMContentLoaded', function () {
   } else if (twitter.hasRequestToken()) {
     // request token 取得済み
     // PINコードを入力する
+    $('#form_send_pincode').show();
+    $('#form_twitter').hide();
   } else {
-    $('form').hide();
+    $('#form_twitter').hide();
     // Twitterログインボタンのクリックイベント
     $('#twitter_login').click(function () {
       twitter.userLogin();
