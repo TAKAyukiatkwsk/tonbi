@@ -26,6 +26,7 @@ Twitter.prototype.userLogin = function () {
     consumerSecret: CONSUMER_SECRET
   };
   var oauth = OAuth(options);
+  var twitter = this;
 
   oauth.get('https://api.twitter.com/oauth/request_token',
       function (data) {
@@ -38,7 +39,7 @@ Twitter.prototype.userLogin = function () {
         }
 
         // request token を保存する
-        this.requestToken = queryOauthToken;
+        twitter.requestToken = queryOauthToken;
 
         // 新しいタブでauthorizeページを開く
         chrome.tabs.create({

@@ -7,9 +7,6 @@ function displayPageTitleUrl() {
   });
 }
 
-// TODO: バックグラウンドでTwitterオブジェクトを作っておく？
-//       今のままだとアカウントの状態を保存できない
-//       localstorageに保存する？
 document.addEventListener('DOMContentLoaded', function () {
   // バックグランドで作成したTwitterインスタンスを取得する
   var bg = chrome.extension.getBackgroundPage();
