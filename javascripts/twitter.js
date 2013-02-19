@@ -59,3 +59,7 @@ Twitter.prototype.hasRequestToken = function () {
   }
   return false;
 }
+
+Twitter.prototype.sendPincode = function () {
+  return false;
+}

@@ -20,6 +20,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // PINコードを入力する
     $('#form_send_pincode').show();
     $('#form_twitter').hide();
+
+    // PINコードを送信
+    $('#form_send_pincode').submit(function () {
+      twitter.sendPincode();
+    });
   } else {
     $('#form_twitter').hide();
     // Twitterログインボタンのクリックイベント
