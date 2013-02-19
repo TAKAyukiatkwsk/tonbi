@@ -60,6 +60,7 @@ Twitter.prototype.hasRequestToken = function () {
   return false;
 }
 
-Twitter.prototype.sendPincode = function () {
+Twitter.prototype.sendPincode = function (pincode) {
+  console.log(pincode);
   return false;
 }
