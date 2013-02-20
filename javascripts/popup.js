@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // Twitter認証済みか？
   if (twitter.isAuthorized()) {
     // ログイン&認証済み
+    // ページのタイトルとURLを表示する
+    displayPageTitleUrl();
   } else if (twitter.hasRequestToken()) {
     // request token 取得済み
     // PINコードを入力する
@@ -33,9 +35,5 @@ document.addEventListener('DOMContentLoaded', function () {
     $('#twitter_login').click(function () {
       twitter.userLogin();
     });
-    
   }
-
-  // ページのタイトルとURLを表示する
-  displayPageTitleUrl();
 }, false);
