@@ -2,6 +2,16 @@ function Twitter() {
   this.requestToken = '';
 }
 
+// OAuthオブジェクト(jsOAuth)を生成する
+// 認証が必要なHTTPリクエストはこのオブジェクトに委譲する
+Twitter.prototype.oauth = (function () {
+  var options = {
+    consumerKey: CONSUMER_KEY,
+    consumerSecret: CONSUMER_SECRET
+  };
+  return OAuth(options);
+})();
+
 Twitter.prototype.isAuthorized = function () {
   return false;
 }
@@ -21,12 +31,8 @@ Twitter.prototype.userLogin = function () {
     return null;
   }
 
-  var options = {
-    consumerKey: CONSUMER_KEY,
-    consumerSecret: CONSUMER_SECRET
-  };
-  var oauth = OAuth(options);
   var twitter = this;
+  var oauth = twitter.oauth
 
   oauth.get('https://api.twitter.com/oauth/request_token',
       function (data) {
@@ -62,12 +68,8 @@ Twitter.prototype.hasRequestToken = function () {
 
 Twitter.prototype.sendPincode = function (pincode) {
   console.log(pincode);
-  var options = {
-    consumerKey: CONSUMER_KEY,
-    consumerSecret: CONSUMER_SECRET
-  };
-  var oauth = OAuth(options);
   var twitter = this;
+  var oauth = twitter.oauth
   var params = {
     'oauth_token': twitter.requestToken,
     'oauth_verifier': pincode
