@@ -7,15 +7,15 @@ Twitter.prototype.isAuthorized = function () {
 }
 
 Twitter.prototype.userLogin = function () {
-  function extractQueryOauthToken(responseText) {
+  function extractOauthToken(responseText) {
     // responseText はクエリパラメータ形式になっている
     var arrayOfResponseText = responseText.split('&');
 
-    // oauth_token=で始まる文字列を見つけて返す
+    // oauth_token=で始まる文字列を見つけて値の部分を返す
     for (var index in arrayOfResponseText) {
-      var mathchesOauthToken = arrayOfResponseText[index].match(/^oauth_token=.*$/);
-      if (mathchesOauthToken !== null) {
-        return mathchesOauthToken[0];
+      var mathchesOauthToken = arrayOfResponseText[index].match(/^oauth_token=(.*)$/);
+      if (mathchesOauthToken !== null && mathchesOauthToken.length == 2) {
+        return mathchesOauthToken[1];
       }
     }
     return null;
@@ -32,18 +32,18 @@ Twitter.prototype.userLogin = function () {
       function (data) {
         // succeed to get request token
         // レスポンスからoauth_tokenを抜き出す
-        var queryOauthToken = extractQueryOauthToken(data.text);
-        if (queryOauthToken === null) {
+        var oauthToken = extractOauthToken(data.text);
+        if (oauthToken === null) {
           console.log('Cannot get oauth token!');
           return;
         }
 
         // request token を保存する
-        twitter.requestToken = queryOauthToken;
+        twitter.requestToken = oauthToken;
 
         // 新しいタブでauthorizeページを開く
         chrome.tabs.create({
-          url: 'https://api.twitter.com/oauth/authorize?' + queryOauthToken
+          url: 'https://api.twitter.com/oauth/authorize?oauth_token=' + oauthToken
         });
       },
       function (data) {
