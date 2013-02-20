@@ -22,8 +22,10 @@ document.addEventListener('DOMContentLoaded', function () {
     $('#form_twitter').hide();
 
     // PINコードを送信
-    $('#form_send_pincode').submit(function () {
+    $('#form_send_pincode').submit(function (event) {
+      event.preventDefault();
       twitter.sendPincode($('input#pincode').val());
+      window.close();
     });
   } else {
     $('#form_twitter').hide();

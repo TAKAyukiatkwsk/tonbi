@@ -90,5 +90,4 @@ Twitter.prototype.sendPincode = function (pincode) {
     // fail to get access_token
     console.log(data);
   });
-  return false;
 }
