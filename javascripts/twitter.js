@@ -13,6 +13,9 @@ Twitter.prototype.oauth = (function () {
 })();
 
 Twitter.prototype.isAuthorized = function () {
+  if (this.oauth.getAccessTokenKey()) {
+    return true;
+  }
   return false;
 }
 
