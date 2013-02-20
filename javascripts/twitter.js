@@ -62,5 +62,23 @@ Twitter.prototype.hasRequestToken = function () {
 
 Twitter.prototype.sendPincode = function (pincode) {
   console.log(pincode);
+  var options = {
+    consumerKey: CONSUMER_KEY,
+    consumerSecret: CONSUMER_SECRET
+  };
+  var oauth = OAuth(options);
+  var twitter = this;
+  var params = {
+    'oauth_token': twitter.requestToken,
+    'oauth_verifier': pincode
+  };
+
+  oauth.post('https://api.twitter.com/oauth/access_token', params, function (data) {
+    // succeed to get access_token
+    console.log(data);
+  }, function (data) {
+    // fail to get access_token
+    console.log(data);
+  });
   return false;
 }
