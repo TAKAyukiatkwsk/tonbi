@@ -77,7 +77,15 @@ Twitter.prototype.sendPincode = function (pincode) {
 
   oauth.post('https://api.twitter.com/oauth/access_token', params, function (data) {
     // succeed to get access_token
-    console.log(data);
+    // responseからaccess_tokenを抽出する
+    var arrayOfResponseText = data.text.split('&');
+    var responseParams = {};
+    for (var index in arrayOfResponseText) {
+      var keyValue = arrayOfResponseText[index].split('=');
+      responseParams[keyValue[0]] = keyValue[1];
+    };
+    // access_tokenをOauthオブジェクトに保存
+    oauth.setAccessToken([responseParams.oauth_token, responseParams.oauth_token_secret]);
   }, function (data) {
     // fail to get access_token
     console.log(data);
