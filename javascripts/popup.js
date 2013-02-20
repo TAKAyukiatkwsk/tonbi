@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
       window.close();
     });
   } else {
+    $('#twitter_login').show();
     $('#form_twitter').hide();
     // Twitterログインボタンのクリックイベント
     $('#twitter_login').click(function () {
